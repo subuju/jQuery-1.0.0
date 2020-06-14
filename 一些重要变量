@@ -1,0 +1,91 @@
+
+
+handlers = window.events[load] = {
+    1:ready(),
+}
+
+
+
+
+window={
+    onload:function (event) {
+        console.log('handle');
+        if (typeof jQuery == "undefined") return;
+
+        event = event || jQuery.event.fix(window.event);
+
+        // If no correct event was found, fail
+        if (!event) return;
+
+        var returnValue = true;
+
+        var c = this.events[event.type];
+
+        for (var j in c) {
+            if (c[j].apply(this, [event]) === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                returnValue = false;
+            }
+        }
+
+        return returnValue;
+    }   
+}
+    
+
+
+global={
+    load:[window],
+    click:[button],
+}
+
+
+readyList:[
+    function () {
+        $("button").click(function () {
+            $(".test").hide();
+        })
+    },
+]
+
+
+
+button.events = {
+    click:function () {
+                $(".test").hide();
+    }
+}
+
+
+handlers = button.events.click = {
+    2:function () {
+                $(".test").hide();
+    }
+}
+
+button.onclick = 
+    function (event) {
+        console.log('handle');
+        if (typeof jQuery == "undefined") return;
+
+        event = event || jQuery.event.fix(window.event);
+
+        // If no correct event was found, fail
+        if (!event) return;
+
+        var returnValue = true;
+
+        var c = this.events[event.type];
+
+        for (var j in c) {
+            if (c[j].apply(this, [event]) === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                returnValue = false;
+            }
+        }
+
+        return returnValue;
+    }
+}
