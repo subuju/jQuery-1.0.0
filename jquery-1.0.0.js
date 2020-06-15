@@ -166,14 +166,26 @@ jQuery.fn = jQuery.prototype = {
         return this.attr(key, value, "curCSS");
     },
     text: function (e) {
+        log('enter text(e)');
+        log(e);
+        log(this);
         e = e || this;
         var t = "";
         for (var j = 0; j < e.length; j++) {
+            log('for (var j = 0; j < e.length; j++)');
             var r = e[j].childNodes;
-            for (var i = 0; i < r.length; i++)
+            log(r);
+            for (var i = 0; i < r.length; i++) {
+                log('-------------------------------')
+                log(r[i].nodeType);
                 t += r[i].nodeType != 1 ?
                     r[i].nodeValue : jQuery.fn.text([r[i]]);
+                log(t);
+                log('-------------------------------')
+            }
         }
+        log(t);
+        log('exit text(e)');
         return t;
     },
     wrap: function () {
@@ -373,6 +385,10 @@ jQuery.extend({
         jQuery.each(jQuery.macros.attr, function (i, n) {
             n = n || i;
             jQuery.fn[i] = function (h) {
+                log(h);
+                log(this);
+                log(this[0]);
+                log(this[0][n]);
                 return h == undefined ?
                     this.length ? this[0][n] : null :
                     this.attr(n, h);
@@ -1007,7 +1023,6 @@ jQuery.extend({
         // Bind an event to an element
         // Original by Dean Edwards
 
-        /*window, "load", jQuery.ready*/
         add: function (element, type, handler) {
             log('enter add(element, type, handler)');
             log(element);
@@ -1035,6 +1050,8 @@ jQuery.extend({
 
             // Get the current list of functions bound to this event
             var handlers = element.events[type];
+
+            log(handlers);
 
             // If it hasn't been initialized yet
             if (!handlers) {
@@ -1144,7 +1161,7 @@ jQuery.extend({
                     returnValue = false;
                 }
             }
-            log('exit handle(event)');
+            log('exit handle(event)======================================');
             return returnValue;
         },
 
@@ -1416,9 +1433,6 @@ new function () {
             log(o);
             log(this);
 
-            /*o = click ,  f = function () {
-                $(".test").hide();
-            } */
             return f ? this.bind(o, f) : this.trigger(o);
         };
 

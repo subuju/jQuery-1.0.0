@@ -1,13 +1,10 @@
+window = {
+    events:{
+        load:{
+            1:ready(),
+        }
+    },
 
-
-handlers = window.events[load] = {
-    1:ready(),
-}
-
-
-
-
-window={
     onload:function (event) {
         console.log('handle');
         if (typeof jQuery == "undefined") return;
@@ -32,35 +29,46 @@ window={
         return returnValue;
     }   
 }
-    
+
+handlers = window.events[load] = {
+    1:ready(),
+}
+
+
+ready()={
+    guid:1,
+}
 
 
 global={
     load:[window],
-    click:[button],
+    click:[button, button],
 }
+========================初始化完成=============================
 
 
 readyList:[
     function () {
-        $("button").click(function () {
-            $(".test").hide();
+        $("#btn1").click(function () {
+            alert("Text: " + $("#test").text());
+        });
+
+        $("#btn2").click(function () {
+            alert("HTML: " + $("#test").html());
         })
-    },
+    }
 ]
 
 
 
 button.events = {
-    click:function () {
-                $(".test").hide();
-    }
+    
 }
 
 
 handlers = button.events.click = {
     2:function () {
-                $(".test").hide();
+        alert("Text: " + $("#test").text());
     }
 }
 
