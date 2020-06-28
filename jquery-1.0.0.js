@@ -13,9 +13,7 @@
 if (true) {
     var log = console.log;
 } else {
-    var log = function () {
-
-    };
+    var log = console.dir;
 }
 log('jquery 开始初始化。。。。');
 
@@ -2102,4 +2100,5 @@ jQuery.extend({
         return s.join("&");
     }
 });
+
 log('%cjquery 初始化完成。。。。', 'font-size:20px;color:red;');

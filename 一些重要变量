@@ -42,9 +42,12 @@ ready()={
 
 global={
     load:[window],
-    click:[button, button],
+    click:[button],
 }
 ========================初始化完成=============================
+
+
+
 
 
 readyList:[
